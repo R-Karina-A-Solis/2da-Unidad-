@@ -165,7 +165,7 @@ void medirTiempos(int n) {
         tiempos[2][op].push_back(total / 100.0);
     }
 
-    // ---------------- �RBOL BINARIO ----------------
+    // ---------------- ÁRBOL BINARIO ----------------
     for (int op = 0; op < 4; ++op) {
         total = 0;
         for (int r = 0; r < 100; ++r) {
@@ -204,7 +204,7 @@ void medirTiempos(int n) {
         cout << "|\n";
     }
 
-    // Exportar CSV
+    // Exportar CSV de tiempos
     FILE* out = fopen("tiempos.csv", "w");
     fprintf(out, "estructura,operacion,tiempo\n");
     for (int i = 0; i < 4; ++i)
@@ -212,7 +212,16 @@ void medirTiempos(int n) {
             fprintf(out, "%s,%s,%.4f\n", estructuras[i].c_str(), operaciones[j].c_str(), tiempos[i][j][0]);
     fclose(out);
 
-    cout << "\nArchivo generado: tiempos.csv (tiempos en nanosegundos)\n";
+    // Exportar CSV de complejidades
+    FILE* out2 = fopen("complejidades.csv", "w");
+    fprintf(out2, "estructura,operacion,complejidad\n");
+    fprintf(out2, "Pila,Insercion,O(1)\nPila,Busqueda,O(n)\nPila,Eliminacion,O(1)\nPila,Actualizacion,O(1)\n");
+    fprintf(out2, "Cola,Insercion,O(1)\nCola,Busqueda,O(n)\nCola,Eliminacion,O(1)\nCola,Actualizacion,O(1)\n");
+    fprintf(out2, "Lista,Insercion,O(1)\nLista,Busqueda,O(n)\nLista,Eliminacion,O(1)\nLista,Actualizacion,O(n)\n");
+    fprintf(out2, "arbol,Insercion,O(log n)\narbol,Busqueda,O(log n)\narbol,Eliminacion,O(log n)\narbol,Actualizacion,O(log n)\n");
+    fclose(out2);
+
+    cout << "\nArchivos generados: tiempos.csv y complejidades.csv ✅\n";
 }
 
 int main() {
